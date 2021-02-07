@@ -37,7 +37,7 @@ bundle install
 ## Start Dev Server
 
 ```
-bundler exec jekyll serve
+bundler exec jekyll serve .
 ```
 
 ## Build Site ```./_site```
