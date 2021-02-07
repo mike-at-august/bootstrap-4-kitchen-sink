@@ -1,0 +1,13 @@
+# meta
+author:      "Mike Vardy"
+baseurl:     "/bootstrap-4-kitchen-sink"
+description: "Kitchen Sink Page for Bootstrap 4 components"
+title:       "Bootstrap 4 Kitchen Sink Page"
+url:         "https://mike-at-august.github.io/bootstrap-4-kitchen-sink"
+
+gems:
+  - jekyll-tidy
+
+# build
+exclude:
+  - README.md
