@@ -1,8 +1,9 @@
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.9.4/holder.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
 <script>
    $(function () {
 	   $('[data-toggle="popover"]').popover();
@@ -17,4 +18,25 @@
 	   $('#popover-toggler').click();
    });
    hljs.initHighlightingOnLoad();
+
+	var json = $.getJSON('./gfonts.json', function(data) {
+		$.each( data.items, function( index, font ) {
+			$('#gfont').append( $('<option></option>').attr('value', font.family).text(font.family) );
+		});
+	});
+
+	$("#gfont").on("change", function () {
+		var fontName = $(this).find(':checked').text();
+		var fontChoice = this.value;
+
+		WebFont.load({
+			google: {
+				families: [fontChoice],
+			},
+		});
+
+		$("body").css("font-family", fontName);
+
+		console.log($("body").css("font-family"));
+	});
 </script>
